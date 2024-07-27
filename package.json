@@ -1,0 +1,20 @@
+{
+  "name": "cliphoard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.6.0",
+    "@vitejs/plugin-vue": "^5.1.1",
+    "vite": "^5.3.4"
+  }
+}
