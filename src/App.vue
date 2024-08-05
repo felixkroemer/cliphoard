@@ -23,9 +23,17 @@ const selectedItemIndex = ref(null)
 </script>
 
 <template>
-  <div class="p-4 bg-neutral-900">
-    <ul class="bg-neutral-800 rounded-md overflow-hidden">
-      <ListItem v-for="(item, index) in items"
+  <div class="p-4 bg-neutral-900 flex flex-col h-screen">
+    <div class="bg-neutral-800 p-2">
+      <input placeholder="Search..."
+             class="w-full p-2 rounded-md bg-neutral-800 text-white border border-neutral-900">
+    </div>
+    <ul class="bg-neutral-800 flex-grow overflow-y-scroll scrollbar-hide focus-within:scrollbar-default">
+      <ListItem v-for="
+        (item,
+          index)
+        in
+            items"
                 :item="item"
                 :highlighted="index === selectedItemIndex"
                 :hovered="index === hoveredItemIndex"
