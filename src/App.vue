@@ -20,6 +20,21 @@ const items = ref([
 const hoveredItemIndex = ref(null)
 const selectedItemIndex = ref(null)
 
+const handleKeyPress = (e) => {
+  if (e.keyCode === 38) {
+    e.preventDefault();
+    if (selectedItemIndex.value > 0) {
+      selectedItemIndex.value -= 1;
+    }
+  }
+  if (e.keyCode === 40) {
+    e.preventDefault();
+    if (selectedItemIndex.value < items.value.length - 1) {
+      selectedItemIndex.value += 1;
+    }
+  }
+};
+window.addEventListener('keydown', handleKeyPress);
 </script>
 
 <template>
