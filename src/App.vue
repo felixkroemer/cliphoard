@@ -41,10 +41,10 @@ window.addEventListener('keydown', handleKeyPress);
 </script>
 
 <template>
-  <div class="p-4 bg-neutral-900 flex flex-col h-screen">
+  <div class=" decoration-gray-200 p-4 bg-neutral-900 flex flex-col h-screen accent-slate-950">
     <div class="bg-neutral-800 p-2">
       <input placeholder="Search..."
-             class="w-full p-2 rounded-md bg-neutral-800 text-white border border-neutral-900">
+             class="focus:outline outline-slate-500 outline-1 w-full p-2 rounded-md bg-neutral-800 text-white border border-neutral-900">
     </div>
     <ul class="bg-neutral-800 flex-grow overflow-y-scroll scrollbar-hide focus-within:scrollbar-default">
       <ListItem v-for="
