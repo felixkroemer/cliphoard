@@ -19,6 +19,7 @@ const items = ref([
 
 const hoveredItemIndex = ref(null)
 const selectedItemIndex = ref(null)
+const itemsRef = ref([])
 
 const handleKeyPress = (e) => {
   if (e.keyCode === 38) {
@@ -26,12 +27,14 @@ const handleKeyPress = (e) => {
     if (selectedItemIndex.value > 0) {
       selectedItemIndex.value -= 1;
     }
+    itemsRef.value[selectedItemIndex.value].$el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }
   if (e.keyCode === 40) {
     e.preventDefault();
     if (selectedItemIndex.value < items.value.length - 1) {
       selectedItemIndex.value += 1;
     }
+    itemsRef.value[selectedItemIndex.value].$el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }
 };
 window.addEventListener('keydown', handleKeyPress);
@@ -49,6 +52,7 @@ window.addEventListener('keydown', handleKeyPress);
           index)
         in
             items"
+                ref="itemsRef"
                 :item="item"
                 :highlighted="index === selectedItemIndex"
                 :hovered="index === hoveredItemIndex"
