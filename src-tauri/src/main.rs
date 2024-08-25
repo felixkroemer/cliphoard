@@ -1,12 +1,24 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use core::time;
+use std::thread;
+
+use arboard::Clipboard;
+
 #[derive(serde::Serialize)]
 struct Item {
-  id: u32,
-  text: String
+    id: u32,
+    text: String,
 }
 
+#[tauri::command]
+fn set_clipboard(text: String, app_handle: tauri::AppHandle) {
+    let mut clipboard = Clipboard::new().unwrap();
+    clipboard.set_text(text.clone()).unwrap();
+    thread::sleep(time::Duration::from_millis(100)); //TODO: check race condition
+    app_handle.exit(0);
+}
 
 #[tauri::command]
 fn get_items() -> Vec<Item> {
@@ -26,8 +38,8 @@ fn get_items() -> Vec<Item> {
 }
 
 fn main() {
-  tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![get_items])
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![get_items, set_clipboard])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
