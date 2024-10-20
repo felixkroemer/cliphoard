@@ -23,6 +23,9 @@ const handleKeyPress = (e) => {
     }
     itemsRef.value[selectedItemIndex.value].$el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }
+  if (e.keyCode === 13) {
+    invoke("set_clipboard", { text: items.value[selectedItemIndex.value]['text'] })
+  }
 };
 window.addEventListener('keydown', handleKeyPress);
 
@@ -33,7 +36,7 @@ invoke("get_items").then(fetched_items => {
 </script>
 
 <template>
-  <div class="p-4 bg-neutral-900 flex flex-col h-screen accent-slate-950">
+  <div class="bg-neutral-900 flex flex-col h-screen accent-slate-950">
     <div class="bg-neutral-800 p-2">
       <input placeholder="Search..."
              class="focus:outline outline-slate-500 outline-1 w-full p-2 rounded-md bg-neutral-800 text-white border border-neutral-900">
